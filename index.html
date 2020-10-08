@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="https://cdn.materialdesignicons.com/5.4.55/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <title>Mapa Estacionamento</title>
+</head>
+
+<body style="background-color: #E5E5E5;">
+  <header>
+      <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <div class="container">
+            <!-- Logo -->
+            <a class="navbar-brand" href="#">
+              <img class="logo"src="/img/logo.png" alt="Logo">
+            </a>
+
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    Olá, Fulano! <span class=""></span>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="#"><span class="mdi mdi-parking" style="color:#7CD65D;"></span> Mapa</a>
+                  <a class="dropdown-item" href="#"><span class="mdi mdi-cog" style="color:#616161;"></span> Configurações</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#"><span class="mdi mdi-logout" style="color:#FF3F50;"></span> Sair</a>
+                </div>  
+              </li>
+            </ul>
+          </div>
+        </nav>
+  </header>
+
+  <!-- Page Content -->
+  <section>
+    <div class="container">
+      <div class="map-parking">
+        <div class="row" id="mapa-vagas">
+        </div>
+      </div>
+      
+      <div class="legenda">
+        <div class="row">
+          <div class="col"><span class="mdi mdi-car" style="color:#7CD65D;"></span> Vaga livre</div>
+          <div class="col"><span class="mdi mdi-car" style="color:#FF3F50;"></span> Vaga ocupada</div>
+          <div class="col"><span class="mdi mdi-car-off" style="color:#616161;"></span> Vaga bloqueada</div>
+          <div class="col"></div>
+          <div class="col"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer>
+    <div class="container">
+      <div id="hora-sistema"></div>
+    </div>
+  </footer>
+
+  <!-- MODAL CADASTRO VEICULO-->
+  <div class="modal fade" id="ModalCadastro" tabindex="-1" role="dialog" aria-labelledby="ModalLabelCadastro" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+           
+            <!--HEADER DO MODAL-->
+            <div class="modal-header">
+               
+                <h5 class="modal-title" id="ModalLabelCadastro">Cadastro de Veículo</h5>
+                
+                <h1 class="teste"></h1>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+                
+            </div>
+            
+            
+            <div class="modal-body">
+                
+                <form>
+                   
+                    <!--INPUT PLACA-->
+                    <div class="form-group">
+                        <label for="placa" class="col-form-label">Placa:</label>
+                        <input type="text" class="form-control" id="placa">
+                    </div>
+                    
+                    <!--INPUT MODELO-->
+                    <div class="form-group">
+                        <label for="modelo" class="col-form-label">Modelo:</label>
+                        <input type="text" class="form-control" id="modelo">
+                    </div>
+                    
+                    <!--INPUT COR-->
+                    <div class="form-group">
+                        <label for="cor" class="col-form-label">Cor:</label>
+                        <input type="text" class="form-control" id="cor">
+                    </div>
+                    
+                    <!--INPUT HORÁRIO DE ENTRADA-->
+                    <div class="form-group">
+                        <label for="horario-entrada" class="col-form-label">Horário de Entrada:</label>
+                        <input type="text" class="form-control" id="horario-entrada">
+                    </div>
+                    
+                </form>
+                
+            </div>
+            
+            <div class="modal-footer">
+                
+                <!--BOTÃO FECHAR MODAL-->
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                
+                <!--BOTÃO FINALIZAR - IMPRIME COMPROVANTE DE ESTACIONAMENTO-->
+                <button type="button" class="btn btn-primary" id="botao-finalizar">Finalizar</button>
+                
+            </div>
+            
+        </div>
+    </div>
+  </div>
+
+  <!-- MODAL STATUS VAGA-->
+  <div class="modal fade" id="ModalStatus" tabindex="-1" role="dialog" aria-labelledby="ModalLabelStatus" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+           
+            <!--HEADER DO MODAL-->
+            <div class="modal-header">
+                <h5 class="modal-title" id="ModalLabelStatus">Status do Veículo</h5>
+                
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+                
+            </div>
+            
+            
+            <div class="modal-body">
+               
+                <form>
+                   
+                    <!--PLACA CADASTRADA-->
+                    <div class="form-group row">
+                        <label for="placa" class="col-sm-2 col-form-label">Placa:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="placa">
+                        </div>                           
+                    </div>
+                    
+                    <!--MODELO CADASTRADO-->
+                    <div class="form-group row">
+                        <label for="modelo" class="col-sm-2 col-form-label">Modelo:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="modelo">
+                        </div>                           
+                    </div>
+                    
+                    <!--COR CADASTRADA-->
+                    <div class="form-group row">
+                        <label for="cor" class="col-sm-2 col-form-label">Cor:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="cor">
+                        </div>                           
+                    </div>
+                    
+                    <!--HORÁRIO DE ENTRADA CADASTRADO-->
+                    <div class="form-group row">
+                        <label for="horario-entrada" class="col-sm-2 col-form-label">Entrada:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="horario-entrada">
+                        </div>                           
+                    </div>
+                    
+                    <!--HORÁRIO DE SAÍDA CADASTRADO - HORA ATUAL-->
+                    <div class="form-group row">
+                        <label for="horario-saida" class="col-sm-2 col-form-label">Saída:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="horario-saida">
+                        </div>                           
+                    </div>
+                    
+                    <!--DESCONTO-->
+                    <div class="form-group row">
+                        <label for="desconto" class="col-sm-2 col-form-label">Desconto:</label>
+                        <div class="col-sm-10">
+                            <input type="number" class="form-control" id="desconto">
+                        </div>                           
+                    </div>
+                    
+                    <!--VALOR TOTAL-->
+                    <div class="form-group row">
+                        <label for="total" class="col-sm-2 col-form-label">Total:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="total">
+                        </div>                           
+                    </div>
+                    
+                </form>
+                
+            </div>
+            
+            <div class="modal-footer">
+                
+                <!--BOTÃO CHECAR - IMPRIME CONFERÊNCIA DO VALOR FINAL-->
+                <button type="button" class="btn btn-primary" id="botao-checar">Checar</button>
+                
+                <!--BOTÃO ATUALIZAR - INSERE DESCONTO-->
+                <button type="button" class="btn btn-warning" id="botao-atualizar">Atualizar</button>
+                
+                <!--BOTÃO FINALIZAR - CLIENTE PAGOU, FINALIZO A ESTADIA DO CARRO-->
+                <button type="button" class="btn btn-success" id="botao-finalziar">Finalizar</button>
+                
+                <!--BOTÃO CANCELAR-->
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                
+            </div>
+            
+        </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+  </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+    integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
+  </script>
+  <script src="/js/main.js"></script>
+  <script src="/js/hora.js"></script>
+
+</body>
+
+</html>
