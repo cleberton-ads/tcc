@@ -51,11 +51,38 @@ const data = {
         "id" : 8,
         "numero_vaga" : 8,
         "status_vaga" : "ocupada",
-      }, 
-      {
+      }, {
         "id" : 9,
         "numero_vaga" : 9,
         "status_vaga" : "ocupada",
+      }, {
+        "id" : 10,
+        "numero_vaga" : 10,
+        "status_vaga" : "livre",
+      }, {
+        "id" : 11,
+        "numero_vaga" : 11,
+        "status_vaga" : "livre",
+      }, {
+        "id" : 12,
+        "numero_vaga" : 12,
+        "status_vaga" : "bloqueada",
+      }, {
+        "id" : 13,
+        "numero_vaga" : 13,
+        "status_vaga" : "livre",
+      }, {
+        "id" : 14,
+        "numero_vaga" : 14,
+        "status_vaga" : "ocupada",
+      }, {
+        "id" : 15,
+        "numero_vaga" : 15,
+        "status_vaga" : "livre",
+      }, {
+        "id" : 16,
+        "numero_vaga" : 16,
+        "status_vaga" : "livre",
       }
     ]
   };
