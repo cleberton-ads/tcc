@@ -15,6 +15,10 @@ $(document).ready(function(){
             return
         }
       });
+
+      $(document).on('click', '.config', function(event){ 
+        event.stopPropagation();
+     });
 })
 
 const data = {

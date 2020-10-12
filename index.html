@@ -29,7 +29,12 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" href="#"><span class="mdi mdi-parking" style="color:#7CD65D;"></span> Mapa</a>
-                  <a class="dropdown-item" href="#"><span class="mdi mdi-cog" style="color:#616161;"></span> Configurações</a>
+                  <a class="dropdown-item config" href="#" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample" data-target="#collapseExample"><span class="mdi mdi-cog" style="color:#616161;"></span> Configurações</a>
+                  <div class="collapse" id="collapseExample">
+                    <a class="dropdown-item" href="#">Usuários</a>
+                    <a class="dropdown-item" href="#">Vagas</a>
+                    <a class="dropdown-item" href="#">Preços</a>
+                  </div>
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="#"><span class="mdi mdi-logout" style="color:#FF3F50;"></span> Sair</a>
                 </div>  
@@ -42,7 +47,7 @@
   <!-- Page Content -->
   <section>
     <div class="container">
-      <div class="map-parking">
+      <div class="principal">
         <div class="row" id="mapa-vagas">
         </div>
       </div>
@@ -58,7 +63,7 @@
       </div>
     </div>
   </section>
-  <footer>
+  <footer class="footer">
     <div class="container">
       <div id="hora-sistema"></div>
     </div>
