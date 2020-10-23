@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="https://cdn.materialdesignicons.com/5.4.55/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
     integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"">
   <title>Mapa Estacionamento</title>
 </head>
 
@@ -215,7 +216,10 @@
             </div>
             
             <div class="modal-footer">
-                
+
+                <!--BOTÃO CANCELAR-->
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+
                 <!--BOTÃO CHECAR - IMPRIME CONFERÊNCIA DO VALOR FINAL-->
                 <button type="button" class="btn btn-primary" id="botao-checar">Checar</button>
                 
@@ -223,11 +227,7 @@
                 <button type="button" class="btn btn-warning" id="botao-atualizar">Atualizar</button>
                 
                 <!--BOTÃO FINALIZAR - CLIENTE PAGOU, FINALIZO A ESTADIA DO CARRO-->
-                <button type="button" class="btn btn-success" id="botao-finalziar">Finalizar</button>
-                
-                <!--BOTÃO CANCELAR-->
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                
+                <button type="button" class="btn btn-success" id="botao-finalziar">Finalizar</button>                
             </div>
             
         </div>
@@ -244,8 +244,34 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
     integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
   </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+  
   <script src="/js/main.js"></script>
   <script src="/js/hora.js"></script>
+  <script>
+    // Click vagas e condição do status para abrir modal
+    $(document).ready(function(){
+      $(document).on("click", ".vaga-default", function() {
+        if($(this).data("status") == 'livre'){
+          $('#ModalCadastro').modal('show')
+          return
+        }
+        if($(this).data("status") == 'ocupado'){
+          $('#ModalStatus').modal('show')
+          return
+        }
+        if($(this).data("status") == 'bloqueado'){
+          toastr.options = {"positionClass": "toast-top-center"}
+          toastr["error"]("Vaga está Bloqueada")
+          return
+        }
+      });
+
+      $(document).on('click', '.config', function(event){ 
+        event.stopPropagation();
+      });
+    })
+  </script>
 
 </body>
 
