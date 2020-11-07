@@ -91,7 +91,7 @@
             
             <div class="modal-body">
                 
-                <form>
+                <form id='formCadastro' method="POST">
                    
                     <!--INPUT PLACA-->
                     <div class="form-group">
@@ -127,7 +127,7 @@
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                 
                 <!--BOTÃO FINALIZAR - IMPRIME COMPROVANTE DE ESTACIONAMENTO-->
-                <button type="button" class="btn btn-primary" id="botao-finalizar">Finalizar</button>
+                <button type="button" class="btn btn-primary" id="btnCadastrar" onclick="submitCadastro()">Finalizar</button>
                 
             </div>
             
@@ -153,7 +153,7 @@
             
             <div class="modal-body">
                
-                <form>
+                <form id="formStatus" method="POST">
                    
                     <!--PLACA CADASTRADA-->
                     <div class="form-group row">
@@ -221,13 +221,13 @@
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
 
                 <!--BOTÃO CHECAR - IMPRIME CONFERÊNCIA DO VALOR FINAL-->
-                <button type="button" class="btn btn-primary" id="botao-checar">Checar</button>
+                <button type="button" class="btn btn-primary" id="btnChecar">Checar</button>
                 
                 <!--BOTÃO ATUALIZAR - INSERE DESCONTO-->
-                <button type="button" class="btn btn-warning" id="botao-atualizar">Atualizar</button>
+                <button type="button" class="btn btn-warning" id="btnAtualizar">Atualizar</button>
                 
                 <!--BOTÃO FINALIZAR - CLIENTE PAGOU, FINALIZO A ESTADIA DO CARRO-->
-                <button type="button" class="btn btn-success" id="botao-finalziar">Finalizar</button>                
+                <button type="button" class="btn btn-success" id="btnFinalziar">Finalizar</button>                
             </div>
             
         </div>
