@@ -4,27 +4,30 @@ function zero(x){
     } return x
 }
 
-setInterval(function(){
-    var data = new Date();
+function HoraCerta(){
+    const data = new Date();
 
-    var dia = data.getDate();
-    var mes = data.getMonth();
-    var ano = data.getUTCFullYear();
+    let dia = data.getDate();
+    const mes = data.getMonth();
+    const ano = data.getUTCFullYear();
 
-    var hora = data.getHours();
-    var min = data.getMinutes();
-    var seg = data.getSeconds();
+    const hora = data.getHours();
+    let min = data.getMinutes();
+    let seg = data.getSeconds();
 
     dia = zero(dia)
     min = zero(min)
     seg = zero(seg)
 
-    var str_data = dia + '/' + (mes+1) + '/' + ano;
-    var str_hora = hora + ':' + min + ':' + seg;
+    const str_data = dia + '/' + (mes+1) + '/' + ano;
+    const str_hora = hora + ':' + min + ':' + seg;
 
-    var data_hora = str_data + ' ' + str_hora
+    const data_hora = str_data + ' ' + str_hora
 
-    document.getElementById("hora-sistema").innerHTML = data_hora
+    return data_hora
+}
 
+setInterval(function(){
+    document.getElementById("hora-sistema").innerHTML = HoraCerta()
 },1000)
 
