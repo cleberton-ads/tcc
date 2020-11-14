@@ -2,6 +2,6 @@
 
 var btnEntrar = document.getElementById('BtnEntrar')
 
-btnEntrar.addEventListener('click', function(){
+btnEntrar.addEventListener('submit', function(){
    
 })

@@ -19,7 +19,6 @@ function DataHora(){
   min = zero(min)
   seg = zero(seg)
 
-  
   const str_hora = hora + ':' + min + ':' + seg;
   const str_data = dia + '/' + (mes+1) + '/' + ano;
 
@@ -67,7 +66,7 @@ const url = 'https://backimpacta.herokuapp.com/'
 // metodos create e render Vagas
 function createVagas(vagas) {
   return vagas.map(vaga => `
-      <div class="col-sm">
+      <div class="col">
           <div class="vaga-default ${vaga.status}"><a id="vaga${vaga.id_vagas}" data-status="${vaga.status}" data-id="${vaga.id_vagas}" class="vaga-default btn-principal" href="#">${vaga.numero_vaga}</a></div>
       </div>`).join('');
 }
@@ -264,7 +263,6 @@ function vagaAlocada(){
     toastr["success"]("Vaga Alocada com sucesso")
 }
 
-
 async function getPlaca(placa){
   await fetch(url + `buscaVeic/${placa}`)
   .then(r => r.json())
@@ -318,7 +316,24 @@ function renderVeiculo(data){
   placa.value = data.placa
   modelo.value = data.modelo
   cor.value = data.cor
-  hora_entrada.value = data.entrada
-  
+  hora_entrada.value = retornarData(data.entrada)
 }
 
+function retornarData(data){
+  separar = data.split('T')
+
+  data_separada = separar[0]
+  hora_separada = separar[1]
+
+  hora = hora_separada.split('.')
+
+  dataamer = data_separada.split('-')
+  
+  dia = dataamer[2]
+  mes = dataamer[1]
+  ano = dataamer[0]
+
+  datanova = dia + '/' + mes + '/' + ano
+
+  return datanova + ' ' + hora[0]
+}

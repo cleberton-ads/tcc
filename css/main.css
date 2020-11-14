@@ -85,11 +85,14 @@ a.btn-principal:link, a.btn-principal:visited, a.btn-principal:active, a.btn-pri
 }
 
 footer{
-    width: 100%;
     background-color: #f8f9fa;
     height: 60px;
     text-align: right;
     padding-top: 20px;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
 }
 
 /*tela login*/

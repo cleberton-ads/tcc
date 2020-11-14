@@ -17,7 +17,7 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
           <div class="container">
             <!-- Logo -->
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="/index.html">
               <img class="logo"src="/img/logo.png" alt="Logo">
             </a>
 
@@ -28,7 +28,7 @@
                     Olá, Fulano! <span class=""></span>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#"><span class="mdi mdi-parking" style="color:#7CD65D;"></span> Mapa</a>
+                  <a class="dropdown-item" href="/index.html"><span class="mdi mdi-parking" style="color:#7CD65D;"></span> Mapa</a>
                   <a class="dropdown-item config" href="#" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample" data-target="#collapseExample"><span class="mdi mdi-cog" style="color:#616161;"></span> Configurações</a>
                   <div class="collapse" id="collapseExample">
                     <a class="dropdown-item" href="#">Usuários</a>
@@ -61,39 +61,26 @@
 
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <th scope="row">1</th>
-
-              <td>01</td>
-              <td>
-                <div class="form-group">
-                           
-                  <select class="col-4" id="status">
-                          <option value="1">Ocupada</option>
-                          <option value="2">Livre</option>
-                          <option value="3">Interditada</option>
-                  </select>
-
-                </div>
-
-              </td>
-
-              <td >
-                <span class="mdi mdi-update mdi-24px btn" style="color:#7CD65D;" id="btn-atualiza-vaga"></span>
-              </td>
-
-              
-            </tr>
+          <tbody id="table-vaga">
+            
           </tbody>
         </table>
     
       </div>
+
+      <div class="legenda">
+        <div class="row">
+          <div class="col"><span class="mdi mdi-car" style="color:#7CD65D;"></span> Vaga livre</div>
+          <div class="col"><span class="mdi mdi-car" style="color:#FF3F50;"></span> Vaga ocupada</div>
+          <div class="col"><span class="mdi mdi-car-off" style="color:#616161;"></span> Vaga bloqueada</div>
+          <div class="col"></div>
+          <div class="col"></div>
+        </div>
+      </div>
     </div>
   </section>
 
-
-  <footer class="">
+  <footer class="footer">
     <div class="container">
       <div id="hora-sistema"></div>
     </div>
@@ -112,7 +99,7 @@
     integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
   </script>
   <script src="/js/main.js"></script>
-  <script src="/js/hora.js"></script>
+  <script src="/js/vagas.js"></script>
 
 </body>
 
