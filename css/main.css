@@ -118,3 +118,23 @@ footer{
 .logo-centro{
     text-align: center;
 }
+
+.btn-green{
+    background-color:#7CD65D;
+    color: #ffffff;
+}
+
+.btn-red{
+    background-color:#FF3F50;
+    color: #ffffff;
+}
+
+.btn-blue{
+    background-color: #53B0D4;
+    color: #ffffff;
+}
+
+.btn-yellow{
+    background-color: #616161;
+    color: #ffffff;
+}

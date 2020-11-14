@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="https://cdn.materialdesignicons.com/5.4.55/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
     integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-  <title>Mapa Estacionamento</title>
+  <title>Estacionamento</title>
 </head>
 
 <body style="background-color: #E5E5E5;">
@@ -48,7 +48,46 @@
   <section>
     <div class="container">
       <div class="principal">
-        
+
+        <br>
+
+        <table class="table">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Vaga</th>
+              <th scope="col">Status</th>
+              <th scope="col"></th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+
+              <td>01</td>
+              <td>
+                <div class="form-group">
+                           
+                  <select class="col-4" id="status">
+                          <option value="1">Ocupada</option>
+                          <option value="2">Livre</option>
+                          <option value="3">Interditada</option>
+                  </select>
+
+                </div>
+
+              </td>
+
+              <td >
+                <span class="mdi mdi-update mdi-24px btn" style="color:#7CD65D;" id="btn-atualiza-vaga"></span>
+              </td>
+
+              
+            </tr>
+          </tbody>
+        </table>
+    
       </div>
     </div>
   </section>
