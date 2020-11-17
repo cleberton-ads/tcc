@@ -71,7 +71,7 @@ section{
 
 .legenda{
     margin-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
 }
 
 a.btn-principal:link, a.btn-principal:visited, a.btn-principal:active, a.btn-principal:hover{
@@ -134,10 +134,5 @@ footer{
 
 .btn-blue{
     background-color: #53B0D4;
-    color: #ffffff;
-}
-
-.btn-yellow{
-    background-color: #616161;
     color: #ffffff;
 }

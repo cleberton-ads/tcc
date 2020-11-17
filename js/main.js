@@ -1,8 +1,8 @@
-function zero(x){
-  if (x < 10){
-      x = '0' + x
-  } return x
-}
+// function zero(x){
+//   if (x < 10){
+//       x = '0' + x
+//   } return x
+// }
 
 function DataHora(){
   const data = new Date();
@@ -15,9 +15,9 @@ function DataHora(){
   let min = data.getMinutes();
   let seg = data.getSeconds();
 
-  dia = zero(dia)
-  min = zero(min)
-  seg = zero(seg)
+  // dia = zero(dia)
+  // min = zero(min)
+  // seg = zero(seg)
 
   const str_hora = hora + ':' + min + ':' + seg;
   const str_data = dia + '/' + (mes+1) + '/' + ano;
@@ -254,7 +254,6 @@ enviarCadastro.addEventListener('click', async function(){
   await createCadastro()
   await alterarVaga()
   await getVagas()
-  
 })
 
 function vagaAlocada(){
@@ -292,13 +291,6 @@ btnBuscarPlaca.addEventListener('click', async function(){
   await buscarPlaca()
 })
 
-const btnSaida = document.getElementById('btnSaida')
-btnSaida.addEventListener('click', function(){
-    const horaSaida = document.getElementById('status-saida')
-    horaSaida.value = DataHora()
-})
-
-
 async function getVeiculo(id){
   let veiculo
   await fetch(url+`vagas/${id}`)
@@ -319,6 +311,34 @@ function renderVeiculo(data){
   hora_entrada.value = retornarData(data.entrada)
 }
 
+function renderVeiculo(data){
+  const placa = document.getElementById('status-placa')
+  const modelo = document.getElementById('status-modelo')
+  const cor = document.getElementById('status-cor')
+  const hora_entrada = document.getElementById('status-entrada')
+
+  placa.value = data.placa
+  modelo.value = data.modelo
+  cor.value = data.cor
+  hora_entrada.value = retornarData(data.entrada)
+}
+
+async function getPreco(id, bandeira){
+  await fetch(url + `vagas/fechamento/${id}?bandeira=${bandeira}`)
+  .then(r => r.json())
+  .then(json => renderPreco(json))
+}
+
+function renderPreco(data){
+  const total = document.getElementById('status-total')
+
+  total.value = formataMoeda(data.price)
+}
+
+function formataMoeda(moeda){
+  return parseInt(moeda).toLocaleString('pt-br',{ style: 'currency', currency: 'BRL' })
+}
+
 function retornarData(data){
   separar = data.split('T')
 
@@ -337,3 +357,11 @@ function retornarData(data){
 
   return datanova + ' ' + hora[0]
 }
+
+const bntPagamento = document.getElementById('btnCalcular')
+bntPagamento.addEventListener('click', function(){
+  let preco = 5
+  const bandeira = document.getElementById('status-preco').value = preco
+  getPreco(vagaSelecionada.id, bandeira)
+})
+
