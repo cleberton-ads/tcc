@@ -1,8 +1,8 @@
-// function zero(x){
-//   if (x < 10){
-//       x = '0' + x
-//   } return x
-// }
+function zero(x){
+  if (x < 10){
+      x = '0' + x
+  } return x
+}
 
 function DataHora(){
   const data = new Date();
@@ -15,9 +15,9 @@ function DataHora(){
   let min = data.getMinutes();
   let seg = data.getSeconds();
 
-  // dia = zero(dia)
-  // min = zero(min)
-  // seg = zero(seg)
+  dia = zero(dia)
+  min = zero(min)
+  seg = zero(seg)
 
   const str_hora = hora + ':' + min + ':' + seg;
   const str_data = dia + '/' + (mes+1) + '/' + ano;
@@ -311,18 +311,6 @@ function renderVeiculo(data){
   hora_entrada.value = retornarData(data.entrada)
 }
 
-function renderVeiculo(data){
-  const placa = document.getElementById('status-placa')
-  const modelo = document.getElementById('status-modelo')
-  const cor = document.getElementById('status-cor')
-  const hora_entrada = document.getElementById('status-entrada')
-
-  placa.value = data.placa
-  modelo.value = data.modelo
-  cor.value = data.cor
-  hora_entrada.value = retornarData(data.entrada)
-}
-
 async function getPreco(id, bandeira){
   await fetch(url + `vagas/fechamento/${id}?bandeira=${bandeira}`)
   .then(r => r.json())
@@ -360,8 +348,23 @@ function retornarData(data){
 
 const bntPagamento = document.getElementById('btnCalcular')
 bntPagamento.addEventListener('click', function(){
-  let preco = 5
-  const bandeira = document.getElementById('status-preco').value = preco
-  getPreco(vagaSelecionada.id, bandeira)
+  const preco = formataMoeda(5)
+  const saida = document.getElementById('status-saida')
+  saida.value = DataHora()
+  const inputpreco = document.getElementById('status-preco').value = preco
+  bandeira = inputpreco.split('R$')
+  getPreco(vagaSelecionada.id, parseInt(bandeira[1]))
 })
 
+const finalizaAlocacao = document.getElementById('btnFinalziar')
+finalizaAlocacao.addEventListener('click', async function(){
+  vagaLiberada()
+  await alterarVaga()
+  await getVagas()
+})
+
+function vagaLiberada(){
+  $('#ModalStatus').modal('hide')
+  toastr.options = {"positionClass": "toast-top-center"}
+  toastr["success"]("Vaga está Liberada")
+}

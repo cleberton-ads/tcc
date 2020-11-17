@@ -27,15 +27,15 @@
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
-                    Olá, Fulano! <span class=""></span>
+                    Menu <span class=""></span>
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" href="index.html"><span class="mdi mdi-parking" style="color:#7CD65D;"></span> Mapa</a>
                   <a class="dropdown-item config" href="#" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample" data-target="#collapseExample"><span class="mdi mdi-cog" style="color:#616161;"></span> Configurações</a>
                   <div class="collapse" id="collapseExample">
-                    <a class="dropdown-item" href="#">Usuários</a>
+                    <!-- <a class="dropdown-item" href="#">Usuários</a> -->
                     <a class="dropdown-item" href="pages/config_vagas.html">Vagas</a>
-                    <a class="dropdown-item" href="#">Preços</a>
+                    <!-- <a class="dropdown-item" id="preco" href="#">Preço</a> -->
                   </div>
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="#"><span class="mdi mdi-logout" style="color:#FF3F50;"></span> Sair</a>
@@ -45,17 +45,12 @@
           </div>
         </nav>
   </header>
-
+ 
   <!-- Page Content -->
   <section>
     <div class="container">
       <div class="principal">
-        <div class="row" id="mapa-vagas">
-          
-          <!-- <div class="col">
-            <div class="vaga-default livre"><a data-status="livre" class="vaga-default btn-principal" href="#"></a></div>
-          </div> -->
-        </div>
+        <div class="row" id="mapa-vagas"></div>
         <div id="mapa-loading">
             <p>Carregando...</p>
         </div>
@@ -82,7 +77,6 @@
   <div class="modal fade" id="ModalCadastro" tabindex="-1" role="dialog" aria-labelledby="ModalLabelCadastro" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-           
             <!--HEADER DO MODAL-->
             <div class="modal-header">
                
@@ -93,55 +87,41 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
-                
             </div>
-            
-            
+
             <div class="modal-body">
-                
                 <form id='formCadastro' method="POST">
-                   
                     <!--INPUT PLACA-->
                     <div class="form-group">
                         <label for="placa" class="col-form-label">Placa:</label>
                         <input type="text" class="form-control" id="placa">
                     </div>
-                    
                     <!--INPUT MODELO-->
                     <div class="form-group">
                         <label for="modelo" class="col-form-label">Modelo:</label>
                         <input type="text" class="form-control" id="modelo">
                     </div>
-                    
                     <!--INPUT COR-->
                     <div class="form-group">
                         <label for="cor" class="col-form-label">Cor:</label>
                         <input type="text" class="form-control" id="cor">
                     </div>
-                    
                     <!--INPUT HORÁRIO DE ENTRADA-->
                     <div class="form-group">
                         <label for="horario-entrada" class="col-form-label">Horário de Entrada:</label>
                         <input type="text" readonly class="form-control" id="horario-entrada">
                     </div>
-                    
                 </form>
-                
             </div>
             
             <div class="modal-footer">
-                
                 <!--BOTÃO FECHAR MODAL-->
                 <button type="button" class="btn btn-red" data-dismiss="modal">Cancelar</button>
-
                 <!--BOTÃO FINALIZAR - IMPRIME COMPROVANTE DE ESTACIONAMENTO-->
                 <button type="button" class="btn btn-blue" id="btnBuscar">Buscar Veículo</button>
-                
                 <!--BOTÃO FINALIZAR - IMPRIME COMPROVANTE DE ESTACIONAMENTO-->
                 <button type="button" class="btn btn-green" id="btnCadastrar">Alocar</button>
-                
             </div>
-            
         </div>
     </div>
   </div>
@@ -158,14 +138,9 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
-                
             </div>
-            
-            
             <div class="modal-body">
-               
                 <form id="formStatus" method="POST">
-                   
                     <!--PLACA CADASTRADA-->
                     <div class="form-group row">
                         <label for="placa" class="col-sm-2 col-form-label">Placa:</label>
@@ -173,7 +148,6 @@
                             <input type="text" readonly class="form-control" id="status-placa">
                         </div>                           
                     </div>
-                    
                     <!--MODELO CADASTRADO-->
                     <div class="form-group row">
                         <label for="modelo" class="col-sm-2 col-form-label">Modelo:</label>
@@ -181,7 +155,6 @@
                             <input type="text" readonly class="form-control" id="status-modelo">
                         </div>                           
                     </div>
-                    
                     <!--COR CADASTRADA-->
                     <div class="form-group row">
                         <label for="cor" class="col-sm-2 col-form-label">Cor:</label>
@@ -189,7 +162,6 @@
                             <input type="text" readonly class="form-control" id="status-cor">
                         </div>                           
                     </div>
-                    
                     <!--HORÁRIO DE ENTRADA CADASTRADO-->
                     <div class="form-group row">
                         <label for="horario-entrada" class="col-sm-2 col-form-label">Entrada:</label>
@@ -197,7 +169,6 @@
                             <input type="text" readonly class="form-control" id="status-entrada">
                         </div>                           
                     </div>
-                    
                     <!--HORÁRIO DE SAÍDA CADASTRADO - HORA ATUAL-->
                     <div class="form-group row">
                         <label for="horario-saida" class="col-sm-2 col-form-label">Saída:</label>
@@ -205,15 +176,13 @@
                             <input type="text" readonly class="form-control" id="status-saida">
                         </div>                           
                     </div>
-                    
                     <!--DESCONTO-->
                     <div class="form-group row">
-                        <label for="preco" class="col-sm-2 col-form-label">Preço:</label>
+                        <label for="preco" class="col-sm-2 col-form-label">Preço/H:</label>
                         <div class="col-sm-10">
-                            <input type="number" readonly class="form-control" id="status-preco">
+                            <input type="text" readonly class="form-control" id="status-preco">
                         </div>                           
                     </div>
-                    
                     <!--VALOR TOTAL-->
                     <div class="form-group row">
                         <label for="total" class="col-sm-2 col-form-label">Total:</label>
@@ -221,26 +190,57 @@
                             <input type="text" readonly class="form-control" id="status-total">
                         </div>                           
                     </div>
-                    
                 </form>
-                
             </div>
-            
+    
             <div class="modal-footer">
-
                 <!--BOTÃO CANCELAR-->
                 <button type="button" class="btn btn-red" data-dismiss="modal">Cancelar</button>
-
                 <!--BOTÃO CALCULAR - CALCULAR PREÇO FINAL + DESCONTOS-->
                 <button type="button" class="btn btn-blue" id="btnCalcular">Pagamento</button>
- 
                 <!--BOTÃO FINALIZAR - CLIENTE PAGOU, FINALIZO A ESTADIA DO CARRO-->
                 <button type="button" class="btn btn-green" id="btnFinalziar">Finalizar</button>                
             </div>
-            
         </div>
     </div>
   </div>
+
+  <!-- <div class="modal fade" id="ModalPreco" tabindex="-1" role="dialog" aria-labelledby="ModalLabelPreco" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+           
+            
+            <div class="modal-header">
+                <h5 class="modal-title" id="ModalLabelStatus">Configuração de Preço</h5>
+          
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+          
+            <div class="modal-body">
+                <form id="formPreco" method="POST">
+                    
+                    <div class="form-group row">
+                        <label for="preco" class="col-sm-2 col-form-label">Preço:</label>
+                        <div class="col-sm-10">
+                            <input type="number" class="form-control" id="input_preco">
+                        </div>                           
+                    </div>      
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                
+                <button type="button" class="btn btn-red" data-dismiss="modal">Cancelar</button>
+
+                
+                <button type="button" class="btn btn-green" id="btnAtualizar">Finalizar</button>                
+            </div>
+        </div>
+    </div>
+  </div> -->
+  
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">

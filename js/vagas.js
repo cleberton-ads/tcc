@@ -3,8 +3,8 @@ function createVagas(vagas) {
     <th scope="row">${vaga.id_vagas}</th>
     <td>${vaga.numero_vaga}</td>
     <td>${vaga.status}</td>
-    <td >
-        <span class="mdi mdi-update mdi-24px btn" style="color:#7CD65D;" id="btn-atualiza-vaga"></span>
+    <td class="btn-bloquear">
+        <a><span data-id="${vaga.id_vagas}" class="mdi mdi-block-helper mdi-20px btn" style="color:#FF3F50;" id="btn-bloquea-vaga"></span></a>
     </td>
     </tr>`).join('');
 }
@@ -16,19 +16,33 @@ function renderVagas(data) {
 };
   
 async function getVagas(){
-// const loadingmapa = $('#mapa-loading')
-
-// loadingmapa.addClass('active')
-
-await fetch(url+'vagas')
-    .then(r => r.json())
-    .then(json => {
-    // loadingmapa.removeClass('active')
-    return renderVagas(json)
-    })
-    .catch(err => {
-        console.log(err)
-    });
+    await fetch(url+'vagas')
+        .then(r => r.json())
+        .then(json => {
+            return renderVagas(json)
+        })
+        .catch(err => {
+            console.log(err)
+        });
 }
-  
+
 getVagas()
+
+$(document).ready(function(){
+    let vagaSelecionada = null
+    $(document).on("click", "#btn-bloquea-vaga", function(event) {
+        event.stopPropagation()
+        const id = $(this).data("id")
+        vagaSelecionada = {id}
+        toastr.options = {"positionClass": "toast-top-center", "preventDuplicates": true,}
+        toastr["warning"](`<p>Deseja Bloquar a Vaga ${vagaSelecionada.id}</p>
+            <button class="btn" id="btn-sim">Sim</button>
+            <button class="btn">Não</button>`)
+    });
+    $(document).on("click", "#btn-sim", async function(){
+        await patchStatus(vagaSelecionada.id, 'bloqueado')
+        toastr.options = {"positionClass": "toast-top-center", "preventDuplicates": true,}
+        toastr["success"]('Vaga Bloqueada')
+        await getVagas()
+    })
+})
