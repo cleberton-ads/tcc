@@ -5,6 +5,7 @@ function createVagas(vagas) {
     <td>${vaga.status}</td>
     <td class="btn-bloquear">
         <a><span data-id="${vaga.id_vagas}" class="mdi mdi-block-helper mdi-20px btn" style="color:#FF3F50;" id="btn-bloquea-vaga"></span></a>
+        <a><span data-id="${vaga.id_vagas}" class="mdi mdi-update mdi-20px btn" style="color:#7CD65D;" id="btn-desbloquear-vaga"></span></a>
     </td>
     </tr>`).join('');
 }
@@ -35,14 +36,30 @@ $(document).ready(function(){
         const id = $(this).data("id")
         vagaSelecionada = {id}
         toastr.options = {"positionClass": "toast-top-center", "preventDuplicates": true,}
-        toastr["warning"](`<p>Deseja Bloquar a Vaga ${vagaSelecionada.id}</p>
-            <button class="btn" id="btn-sim">Sim</button>
+        toastr["warning"](`<p>Deseja Bloquear a Vaga ${vagaSelecionada.id}</p>
+            <button class="btn" id="btn-sim-b">Sim</button>
             <button class="btn">Não</button>`)
     });
-    $(document).on("click", "#btn-sim", async function(){
+    $(document).on("click", "#btn-sim-b", async function(){
         await patchStatus(vagaSelecionada.id, 'bloqueado')
         toastr.options = {"positionClass": "toast-top-center", "preventDuplicates": true,}
         toastr["success"]('Vaga Bloqueada')
         await getVagas()
-    })
+    });
+    
+    $(document).on("click", "#btn-desbloquear-vaga", function(event) {
+        event.stopPropagation()
+        const id = $(this).data("id")
+        vagaSelecionada = {id}
+        toastr.options = {"positionClass": "toast-top-center", "preventDuplicates": true,}
+        toastr["warning"](`<p>Deseja desbloquear a Vaga ${vagaSelecionada.id}</p>
+            <button class="btn" id="btn-sim-d">Sim</button>
+            <button class="btn">Não</button>`)
+    });
+    $(document).on("click", "#btn-sim-d", async function(){
+        await patchStatus(vagaSelecionada.id, 'livre')
+        toastr.options = {"positionClass": "toast-top-center", "preventDuplicates": true,}
+        toastr["success"]('Vaga Desbloqueada')
+        await getVagas()
+    });
 })
