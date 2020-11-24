@@ -92,19 +92,9 @@ async function getVagas(){
       'x-access-token': window.localStorage.getItem('token')
     },
   })
-    .then(async r => {
-      loadingmapa.removeClass('active')
-      let res = await r.json()
-      console.log(res)
-      renderVagas(res)
-      let status =  r.status
-      console.log(status)
-      return (res, status)
-    })
-    .then(status => {
-      if(status == 500){
-        window.location.href = "./login.html"
-      }
+    .then(r => r.json)
+    .then(json => {
+      renderVagas(json)
     })
     .catch(err => {
         console.log(err)
