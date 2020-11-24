@@ -25,9 +25,15 @@ async function getVagas(){
           'x-access-token': window.localStorage.getItem('token')
         },
       })
-        .then(r => r.json())
-        .then(json => {
-            return renderVagas(json)
+        .then(async r => {
+          let a = await r.json()
+          let b = r.status
+          if (b != 200) {
+            window.location = "./login.html";
+            alert('Token expirado, refaça o login!')
+          }
+          console.log(r.status)
+          return (a, b, renderVagas(a))
         })
         .catch(err => {
             console.log(err)
