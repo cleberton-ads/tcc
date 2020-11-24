@@ -25,9 +25,15 @@ async function getVagas(){
           'x-access-token': window.localStorage.getItem('token')
         },
       })
-        .then(r => r.json())
-        .then(json => {
-            return renderVagas(json)
+        .then(async r => {
+          let a = await r.json()
+          let b = r.status
+          if (b != 200) {
+            window.location = "./login.html";
+            alert('Token expirado, refaça o login!')
+          }
+          console.log(r.status)
+          return (a, b, renderVagas(a))
         })
         .catch(err => {
             console.log(err)
@@ -43,7 +49,7 @@ $(document).ready(function(){
         const id = $(this).data("id")
         vagaSelecionada = {id}
         toastr.options = {"positionClass": "toast-top-center", "preventDuplicates": true,}
-        toastr["warning"](`<p>Deseja Bloquear a Vaga ${vagaSelecionada.id}</p>
+        toastr["warning"](`<p>Deseja Bloquear a Vaga ${vagaSelecionada.id}?</p>
             <button class="btn" id="btn-sim-b">Sim</button>
             <button class="btn">Não</button>`)
     });
@@ -59,7 +65,7 @@ $(document).ready(function(){
         const id = $(this).data("id")
         vagaSelecionada = {id}
         toastr.options = {"positionClass": "toast-top-center", "preventDuplicates": true,}
-        toastr["warning"](`<p>Deseja desbloquear a Vaga ${vagaSelecionada.id}</p>
+        toastr["warning"](`<p>Deseja desbloquear a Vaga ${vagaSelecionada.id}?</p>
             <button class="btn" id="btn-sim-d">Sim</button>
             <button class="btn">Não</button>`)
     });
