@@ -23,4 +23,3 @@ btnEntrar.addEventListener('click', async function(){
   .then(b => (b == 200) ? window.location = "./index.html" : alert('Login Inválido!'))
 })
 
-

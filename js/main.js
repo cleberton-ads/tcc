@@ -429,11 +429,12 @@ async function postLogout(){
     }
   })
   .then(r => r.json())
+  .then(json => console.log(json))
 }
 
 const logout = document.getElementById('btnLogout')
-logout.addEventListener('click', function(){
-  postLogout()
+logout.addEventListener('click', async function(){
+  await postLogout()
   window.location.replace('./login.html')
   window.localStorage.clear()
 })
