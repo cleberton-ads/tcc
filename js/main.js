@@ -1,3 +1,7 @@
+if(window.localStorage.getItem('token') == null){
+  window.location.replace('./login.html')
+}
+
 function zero(x){
   if (x < 10){
       x = '0' + x
@@ -414,11 +418,21 @@ async function delVeiculo(id){
   })
   .then(r => r.json())
 }
-// async function postLogout(){
-//   await fetch(url + 'logout')
-// }
 
-// const logout = document.getElementById('btnLogout')
-// logout.addEventListener('click', function(){
+async function postLogout(){
+  await fetch(url + 'logout', {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json; charset=UTF-8',
+      'x-access-token': window.localStorage.getItem('token')
+    },
+    // body: JSON.stringify({user: document.getElementById("InputUsuario").value, password: document.getElementById("InputSenha").value})
+  })
+}
 
-// })
+const logout = document.getElementById('btnLogout')
+logout.addEventListener('click', function(){
+  postLogout()
+  window.location.replace('./login.html')
+})
