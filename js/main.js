@@ -392,6 +392,7 @@ bntPagamento.addEventListener('click', function(){
 const finalizaAlocacao = document.getElementById('btnFinalziar')
 finalizaAlocacao.addEventListener('click', async function(){
   vagaLiberada()
+  await delVeiculo(vagaSelecionada.id)
   await alterarVaga()
   await getVagas()
 })
@@ -402,6 +403,17 @@ function vagaLiberada(){
   toastr["success"]("Vaga está Liberada")
 }
 
+async function delVeiculo(id){
+  await fetch(url + `vagas/encerra/${id}`, {
+    method: 'DELETE',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json; charset=UTF-8',
+      'x-access-token': window.localStorage.getItem('token')
+    }
+  })
+  .then(r => r.json())
+}
 // async function postLogout(){
 //   await fetch(url + 'logout')
 // }
