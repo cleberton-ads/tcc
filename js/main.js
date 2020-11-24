@@ -65,7 +65,7 @@ const url = 'https://backimpacta.herokuapp.com/'
 
 // metodos create e render Vagas
 function createVagas(vagas) {
-  return vagas.map(vaga => `
+   return vagas.map(vaga => `
       <div class="col">
           <div class="vaga-default ${vaga.status}"><a id="vaga${vaga.id_vagas}" data-status="${vaga.status}" data-id="${vaga.id_vagas}" class="vaga-default btn-principal" href="#">${vaga.numero_vaga}</a></div>
       </div>`).join('');
@@ -77,16 +77,34 @@ function renderVagas(data) {
   mapa_vagas.innerHTML = markup
 };
 
+
+
 async function getVagas(){
   const loadingmapa = $('#mapa-loading')
 
   loadingmapa.addClass('active')
 
-  await fetch(url+'vagas')
-    .then(r => r.json())
-    .then(json => {
+  await fetch(url+'vagas', {
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json; charset=UTF-8',
+      'x-access-token': window.localStorage.getItem('token')
+    },
+  })
+    .then(async r => {
       loadingmapa.removeClass('active')
-      return renderVagas(json)
+      let res = await r.json()
+      console.log(res)
+      renderVagas(res)
+      let status =  r.status
+      console.log(status)
+      return (res, status)
+    })
+    .then(status => {
+      if(status == 500){
+        window.location.href = "./login.html"
+      }
     })
     .catch(err => {
         console.log(err)
@@ -111,7 +129,8 @@ async function patchStatus(id, status){
       method: 'PATCH',
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json; charset=UTF-8'
+        'Content-Type': 'application/json; charset=UTF-8',
+        'x-access-token': window.localStorage.getItem('token')
       },
       body: JSON.stringify({status: status})
     })
@@ -142,7 +161,8 @@ async function postCadastro(opts){
       method: 'POST',
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json; charset=UTF-8'
+        'Content-Type': 'application/json; charset=UTF-8',
+        'x-access-token': window.localStorage.getItem('token')
       },
       body: opts
     })
@@ -202,7 +222,8 @@ async function postAlocacao(opts){
       method: 'POST',
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json; charset=UTF-8'
+        'Content-Type': 'application/json; charset=UTF-8',
+        'x-access-token': window.localStorage.getItem('token')
       },
       body: opts
     })
@@ -263,7 +284,14 @@ function vagaAlocada(){
 }
 
 async function getPlaca(placa){
-  await fetch(url + `buscaVeic/${placa}`)
+  await fetch(url + `buscaVeic/${placa}`, {
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json; charset=UTF-8',
+      'x-access-token': window.localStorage.getItem('token')
+    },
+  })
   .then(r => r.json())
   .then(json => renderPlaca(json.modelo, json.cor))
 }
@@ -293,7 +321,14 @@ btnBuscarPlaca.addEventListener('click', async function(){
 
 async function getVeiculo(id){
   let veiculo
-  await fetch(url+`vagas/${id}`)
+  await fetch(url+`vagas/${id}`, {
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json; charset=UTF-8',
+      'x-access-token': window.localStorage.getItem('token')
+    },
+  })
   .then(r => r.json())
   .then(json => veiculo = json[0])
   return renderVeiculo(veiculo)
@@ -312,7 +347,14 @@ function renderVeiculo(data){
 }
 
 async function getPreco(id, bandeira){
-  await fetch(url + `vagas/fechamento/${id}?bandeira=${bandeira}`)
+  await fetch(url + `vagas/fechamento/${id}?bandeira=${bandeira}`,{
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json; charset=UTF-8',
+      'x-access-token': window.localStorage.getItem('token')
+    },
+  })
   .then(r => r.json())
   .then(json => renderPreco(json))
 }
@@ -368,3 +410,12 @@ function vagaLiberada(){
   toastr.options = {"positionClass": "toast-top-center"}
   toastr["success"]("Vaga está Liberada")
 }
+
+// async function postLogout(){
+//   await fetch(url + 'logout')
+// }
+
+// const logout = document.getElementById('btnLogout')
+// logout.addEventListener('click', function(){
+
+// })

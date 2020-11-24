@@ -17,7 +17,14 @@ function renderVagas(data) {
 };
   
 async function getVagas(){
-    await fetch(url+'vagas')
+    await fetch(url+'vagas', {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json; charset=UTF-8',
+          'x-access-token': window.localStorage.getItem('token')
+        },
+      })
         .then(r => r.json())
         .then(json => {
             return renderVagas(json)
