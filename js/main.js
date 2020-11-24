@@ -293,6 +293,7 @@ async function createAlocacao(id){
 
 var enviarCadastro = document.getElementById('btnCadastrar')
 enviarCadastro.addEventListener('click', async function(){
+  window.print()
   if(!validarCamposCadastro()){
     console.log('Erro')
     return
@@ -441,6 +442,7 @@ function retornarData(data){
 
 const bntPagamento = document.getElementById('btnCalcular')
 bntPagamento.addEventListener('click', function(){
+  document.getElementById("btnFinalziar").disabled = false;
   const preco = formataMoeda(5)
   const saida = document.getElementById('status-saida')
   saida.value = DataHora()
@@ -463,14 +465,12 @@ function validapagamento(){
 
 const finalizaAlocacao = document.getElementById('btnFinalziar')
 finalizaAlocacao.addEventListener('click', async function(){
-  if(!validapagamento()){
-    console.log('Erro')
-    return
-  }
+  window.print()
   vagaLiberada()
   await delVeiculo(vagaSelecionada.id)
   await alterarVaga()
   await getVagas()
+  finalizaAlocacao.addClass('disabled')
 })
 
 function vagaLiberada(){
