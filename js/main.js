@@ -50,7 +50,7 @@ $(document).ready(function(){
       document.getElementById('formStatus').reset()
       $('#ModalStatus').modal('show')
       getVeiculo(vagaSelecionada.id)
-      finalizaAlocacao.addClass('disabled')
+      document.getElementById("btnFinalziar").disabled = true
       return
     }
     if($(this).data("status") == 'bloqueado'){
