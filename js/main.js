@@ -94,7 +94,7 @@ async function getVagas(){
   })
     .then(r => r.json)
     .then(json => {
-      renderVagas(json)
+      return renderVagas(json)
     })
     .catch(err => {
         console.log(err)
