@@ -43,7 +43,7 @@ $(document).ready(function(){
         const id = $(this).data("id")
         vagaSelecionada = {id}
         toastr.options = {"positionClass": "toast-top-center", "preventDuplicates": true,}
-        toastr["warning"](`<p>Deseja Bloquear a Vaga ${vagaSelecionada.id}</p>
+        toastr["warning"](`<p>Deseja Bloquear a Vaga ${vagaSelecionada.id}?</p>
             <button class="btn" id="btn-sim-b">Sim</button>
             <button class="btn">Não</button>`)
     });
@@ -59,7 +59,7 @@ $(document).ready(function(){
         const id = $(this).data("id")
         vagaSelecionada = {id}
         toastr.options = {"positionClass": "toast-top-center", "preventDuplicates": true,}
-        toastr["warning"](`<p>Deseja desbloquear a Vaga ${vagaSelecionada.id}</p>
+        toastr["warning"](`<p>Deseja desbloquear a Vaga ${vagaSelecionada.id}?</p>
             <button class="btn" id="btn-sim-d">Sim</button>
             <button class="btn">Não</button>`)
     });
