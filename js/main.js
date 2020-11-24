@@ -449,8 +449,24 @@ bntPagamento.addEventListener('click', function(){
   getPreco(vagaSelecionada.id, parseInt(bandeira[1]))
 })
 
+function validapagamento(){
+  const inputpreco = document.getElementById('status-preco')
+  if(inputpreco.value == '' || inputpreco.value.length == 0){
+    inputpreco.focus()
+    toastr.options = {"positionClass": "toast-top-center", "preventDuplicates": true,}
+    toastr["warning"]("Valor de pagamento não definido. Pressione o botão <b>Pagamento</b> para prosseguir!")
+    return
+  }
+
+  return inputpreco.value
+}
+
 const finalizaAlocacao = document.getElementById('btnFinalziar')
 finalizaAlocacao.addEventListener('click', async function(){
+  if(!validapagamento()){
+    console.log('Erro')
+    return
+  }
   vagaLiberada()
   await delVeiculo(vagaSelecionada.id)
   await alterarVaga()
