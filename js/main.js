@@ -426,9 +426,9 @@ async function postLogout(){
       'Accept': 'application/json',
       'Content-Type': 'application/json; charset=UTF-8',
       'x-access-token': window.localStorage.getItem('token')
-    },
-    // body: JSON.stringify({user: document.getElementById("InputUsuario").value, password: document.getElementById("InputSenha").value})
+    }
   })
+  .then(r => r.json())
 }
 
 const logout = document.getElementById('btnLogout')
