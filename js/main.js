@@ -471,6 +471,10 @@ finalizaAlocacao.addEventListener('click', async function(){
   await delVeiculo(vagaSelecionada.id)
   await alterarVaga()
   await getVagas()
+<<<<<<< HEAD
+=======
+  document.getElementById("btnFinalziar").disabled = true;
+>>>>>>> 3979bd4323d2c663dfe59eca91b5ea0b79ed0a80
 })
 
 function vagaLiberada(){
