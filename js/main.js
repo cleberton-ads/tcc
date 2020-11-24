@@ -92,8 +92,9 @@ async function getVagas(){
       'x-access-token': window.localStorage.getItem('token')
     },
   })
-    .then(r => r.json)
+    .then(r => r.json())
     .then(json => {
+      loadingmapa.removeClass('active')
       return renderVagas(json)
     })
     .catch(err => {
