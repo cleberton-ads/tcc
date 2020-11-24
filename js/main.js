@@ -435,4 +435,5 @@ const logout = document.getElementById('btnLogout')
 logout.addEventListener('click', function(){
   postLogout()
   window.location.replace('./login.html')
+  window.localStorage.clear()
 })
