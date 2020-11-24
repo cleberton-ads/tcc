@@ -96,10 +96,16 @@ async function getVagas(){
       'x-access-token': window.localStorage.getItem('token')
     },
   })
-    .then(r => r.json())
-    .then(json => {
+    .then(async r => {
+      let a = await r.json()
+      let b = r.status
+      if (b != 200) {
+        window.location = "./login.html";
+        alert('Token expirado, refaça o login!')
+      }
       loadingmapa.removeClass('active')
-      return renderVagas(json)
+      console.log(r.status)
+      return (a, b, renderVagas(a))
     })
     .catch(err => {
         console.log(err)
@@ -129,8 +135,16 @@ async function patchStatus(id, status){
       },
       body: JSON.stringify({status: status})
     })
-        .then(r => r.json())
-        .then(json => console.log(json))
+        .then(async r => {
+          let a = await r.json()
+          let b = r.status
+          if (b != 200) {
+            window.location = "./../login.html";
+            alert('Token expirado, refaça o login!')
+          }
+          console.log(r.status)
+          return (a, b, console.log(a))
+        })
         .catch(err => {
             console.log(err)
         });
@@ -161,8 +175,16 @@ async function postCadastro(opts){
       },
       body: opts
     })
-    .then(r => r.json())
-    .then(json => obteridCarro(json.insertId))
+    .then(async r => {
+      let a = await r.json()
+      let b = r.status
+      if (b != 200) {
+        window.location = "./login.html";
+        alert('Token expirado, refaça o login!')
+      }
+      console.log(r.status)
+      return (a, b, obteridCarro(a.insertId))
+    })
 }
 
 function validarCamposCadastro(){
@@ -222,8 +244,17 @@ async function postAlocacao(opts){
       },
       body: opts
     })
-    .then(r => r.json())
-    .then(json => console.log(json))
+    .then(async r => {
+      let a = await r.json()
+      let b = r.status
+      if (b != 200) {
+        window.location = "./login.html";
+        alert('Token expirado, refaça o login!')
+      }
+      console.log(r.status)
+      return (a, b, console.log(a))
+    })
+    
 }
 
 function formataData(data){
@@ -287,8 +318,16 @@ async function getPlaca(placa){
       'x-access-token': window.localStorage.getItem('token')
     },
   })
-  .then(r => r.json())
-  .then(json => renderPlaca(json.modelo, json.cor))
+  .then(async r => {
+    let a = await r.json()
+    let b = r.status
+    if (b != 200) {
+      window.location = "./login.html";
+      alert('Token expirado, refaça o login!')
+    }
+    console.log(r.status)
+    return (a, b, renderPlaca(a.modelo, a.cor))
+  })
 }
 
 function renderPlaca(modelo, cor){
@@ -324,9 +363,17 @@ async function getVeiculo(id){
       'x-access-token': window.localStorage.getItem('token')
     },
   })
-  .then(r => r.json())
-  .then(json => veiculo = json[0])
-  return renderVeiculo(veiculo)
+  .then(async r => {
+    let a = await r.json()
+    let b = r.status
+    if (b != 200) {
+      window.location = "./login.html";
+      alert('Token expirado, refaça o login!')
+    }
+    console.log(r.status)
+    veiculo = a[0]
+    return (a, b, renderVeiculo(veiculo))
+  })
 }
 
 function renderVeiculo(data){
@@ -350,8 +397,17 @@ async function getPreco(id, bandeira){
       'x-access-token': window.localStorage.getItem('token')
     },
   })
-  .then(r => r.json())
-  .then(json => renderPreco(json))
+  .then(async r => {
+    let a = await r.json()
+    let b = r.status
+    if (b != 200) {
+      window.location = "./login.html";
+      alert('Token expirado, refaça o login!')
+    }
+    console.log(r.status)
+    veiculo = a[0]
+    return (a, b, renderPreco(a))
+  })
 }
 
 function renderPreco(data){
@@ -428,8 +484,17 @@ async function postLogout(){
       'x-access-token': window.localStorage.getItem('token')
     }
   })
-  .then(r => r.json())
-  .then(json => console.log(json))
+  .then(async r => {
+    let a = await r.json()
+    let b = r.status
+    if (b != 200) {
+      window.location = "./login.html";
+      alert('Token expirado, refaça o login!')
+    }
+    console.log(r.status)
+    veiculo = a[0]
+    return (a, b, console.log(a))
+  })
 }
 
 const logout = document.getElementById('btnLogout')
