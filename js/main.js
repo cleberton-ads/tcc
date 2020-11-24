@@ -470,7 +470,7 @@ finalizaAlocacao.addEventListener('click', async function(){
   await delVeiculo(vagaSelecionada.id)
   await alterarVaga()
   await getVagas()
-  finalizaAlocacao.addClass('disabled')
+  document.getElementById("btnFinalziar").disabled = true;
 })
 
 function vagaLiberada(){
